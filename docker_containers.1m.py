@@ -28,18 +28,29 @@ class Container:
 
 
 def main() -> None:
-    plugin.print_menu_item(PLUGIN_ICON)
-    plugin.print_menu_separator()
-    plugin.print_menu_item("Context")
-
-    cmd = subprocess.run(
+    context_cmd = subprocess.run(
         [DOCKER_PATH, "context", "list", "--format=json"],
         check=True,
         text=True,
         capture_output=True,
     )
 
-    objects = list(json.loads(cmd.stdout))
+    try:
+        container_cmd = subprocess.run(
+            [DOCKER_PATH, "ps", "--format={{.Names}}\t{{.Status}}"],
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+    except subprocess.CalledProcessError:
+        return
+
+    plugin.print_menu_item(PLUGIN_ICON)
+    plugin.print_menu_separator()
+    plugin.print_menu_item("Context")
+
+    objects = context_cmd.stdout.split("\n")
+    objects = [json.loads(obj) for obj in objects if obj]
     contexts = [Context(obj["Name"], obj["Current"]) for obj in objects]
 
     for ctx in contexts:
@@ -53,18 +64,7 @@ def main() -> None:
     plugin.print_menu_separator()
     plugin.print_menu_item("Containers")
 
-    try:
-        cmd = subprocess.run(
-            [DOCKER_PATH, "ps", "--format={{.Names}}\t{{.Status}}"],
-            check=True,
-            text=True,
-            capture_output=True,
-        )
-    except subprocess.CalledProcessError:
-        plugin.print_menu_item("docker daemon is not running", color="red")
-        return
-
-    containers = [Container(*line.split("\t")) for line in cmd.stdout.splitlines()]
+    containers = [Container(*line.split("\t")) for line in container_cmd.stdout.splitlines()]
     if len(containers) == 0:
         return
 
