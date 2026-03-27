@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# <xbar.title>Docker Containers</xbar.title>
+# <xbar.version>v1.0</xbar.version>
+# <xbar.desc>Indicate if tomcat is running locally.</xbar.desc>
+# <xbar.dependencies>python</xbar.dependencies>
+#
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
 # <swiftbar.hideDisablePlugin>true</swiftbar.hideDisablePlugin>
 # <swiftbar.hideSwiftBar>true</swiftbar.hideSwiftBar>
