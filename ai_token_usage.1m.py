@@ -80,8 +80,10 @@ def main() -> None:
         key=lambda e: (e["client"], e["model"])
     )
     for client, group in groupby(entries, key=lambda e: e["client"]):
-        plugin.print_menu_action(client, ["open", CODE_ASSIST_PORTAL_URL])
-        for entry in group:
+        client_entries = list(group)
+        client_total = sum(e["cost"] for e in client_entries)
+        plugin.print_menu_action(f"{client} - ${client_total:.2f}", ["open", CODE_ASSIST_PORTAL_URL])
+        for entry in client_entries:
             plugin.print_menu_item(f"{entry["model"]} - ${entry["cost"]:.2f}")
         plugin.print_menu_separator()
 
