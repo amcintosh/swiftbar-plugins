@@ -2,7 +2,7 @@
 
 # <xbar.title>Docker Containers</xbar.title>
 # <xbar.version>v1.0</xbar.version>
-# <xbar.desc>Indicate if tomcat is running locally.</xbar.desc>
+# <xbar.desc>Show running docker containers.</xbar.desc>
 # <xbar.dependencies>python</xbar.dependencies>
 #
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>

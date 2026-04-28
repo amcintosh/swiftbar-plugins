@@ -18,7 +18,7 @@ from typing import Dict, List
 import plugin
 
 
-HSX_ICON_PATH = Path(__file__).resolve().parent / "hsx.ico"
+HSX_ICON_PATH = Path(__file__).resolve().parent / "assets" / "hsx.ico"
 OFFCALL_ICON = "🟢"
 ONCALL_ICON = "🔴"
 HSX_CLI = "/Users/amcintosh3/Personal/hsx-cli/.venv/bin/hsx"
