@@ -52,7 +52,13 @@ def main() -> None:
 
     usage_data = json.loads(context_cmd.stdout)
 
-    total_cost = usage_data["totalCost"]
+    fixed_costs_path = Path(__file__).resolve().parent / ".ai_fixed_costs.json"
+    fixed_entries = []
+    if fixed_costs_path.exists():
+        fixed_costs = json.loads(fixed_costs_path.read_text())
+        fixed_entries = [{"client": client, "model": "Fixed", "cost": cost} for client, cost in fixed_costs.items()]
+
+    total_cost = usage_data["totalCost"] + sum(e["cost"] for e in fixed_entries)
     total_cost_percent = total_cost / TOTAL_BUDGET * 100
 
     if total_cost_percent < 25:
@@ -78,7 +84,7 @@ def main() -> None:
     entries = sorted(
         [e for e in usage_data.get("entries", []) if e["cost"] > 0],
         key=lambda e: (e["client"], e["model"])
-    )
+    ) + fixed_entries
     for client, group in groupby(entries, key=lambda e: e["client"]):
         client_entries = list(group)
         client_total = sum(e["cost"] for e in client_entries)
