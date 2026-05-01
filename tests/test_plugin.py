@@ -1,7 +1,7 @@
 import io
 import unittest
 
-import plugin
+from plugins import plugin
 
 
 class TestPlugin(unittest.TestCase):

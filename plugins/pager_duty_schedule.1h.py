@@ -19,7 +19,7 @@ from pathlib import Path
 
 import plugin
 
-SECRETS_FILE = Path(__file__).resolve().parent / ".secrets.ini"
+SECRETS_FILE = Path(__file__).resolve().parent.parent / ".secrets.ini"
 
 PAGER_ICON = "📟"
 OFFCALL_ICON = "🟢"

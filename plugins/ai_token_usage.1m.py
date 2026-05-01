@@ -25,7 +25,7 @@ CODE_USAGE_CLI = "tokscale@latest"
 
 
 def get_image_path(size: str):
-    return Path(__file__).resolve().parent / "assets" / f"beaker_{size}.png"
+    return Path(__file__).resolve().parent.parent / "assets" / f"beaker_{size}.png"
 
 
 def check_error(cmd):
@@ -52,7 +52,7 @@ def main() -> None:
 
     usage_data = json.loads(context_cmd.stdout)
 
-    fixed_costs_path = Path(__file__).resolve().parent / ".ai_fixed_costs.json"
+    fixed_costs_path = Path(__file__).resolve().parent.parent / ".ai_fixed_costs.json"
     fixed_entries = []
     if fixed_costs_path.exists():
         fixed_costs = json.loads(fixed_costs_path.read_text())

@@ -1,24 +1,22 @@
-.POSIX:
-.SUFFIXES:
+.PHONY: test, check-style, format, test-all
 
-all: fmt test lint
+help: ## Show this help message
+	@echo "Dotfiles v2 - Available targets:"
+	@echo ""
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
-fmt:
+
+format:
 	ruff format
 
 test:
-	python3 -m unittest -v
+	poetry run python -m unittest discover -v tests
 
-lint:
-	ruff check
+check-style:
+	poetry run flake8 plugins --count --show-source --statistics
+	poetry run flake8 tests --count --show-source --statistics
 
 mypy:
-	mypy .
+	poetry run mypy .
 
-# run `make pre-commit` once to install the hook.
-pre-commit: .git/hooks/pre-commit fmt test lint mypy
-	git diff --exit-code
-
-.git/hooks/pre-commit:
-	echo "make pre-commit" > .git/hooks/pre-commit
-	chmod +x .git/hooks/pre-commit
+test-all: test check-style

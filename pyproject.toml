@@ -1,16 +1,31 @@
+[project]
+name = "swiftbar-plugins"
+version = "0.1.0"
+description = "A collection of my plugins for SwiftBar"
+authors = [
+    {name = "Andrew McIntosh", email = "andrew@amcintosh.net"}
+]
+readme = "README.md"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [{include = "plugins"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.0"
+flake8-pyproject = "^1.2"
+mypy = "^1.20.2"
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".git", "__pycache__", ".venv"]
+
 [tool.mypy]
 strict = true
 pretty = true
-
-[tool.ruff]
-line-length = 999
-
-[tool.ruff.lint]
-select = [
-    "F",  # pyflakes
-    "E",  # pycodestyle errors
-    "W",  # pycodestyle warnings
-    "I",  # isort
-    "N",  # pep8-naming
-    "UP", # pyupgrade
-]
