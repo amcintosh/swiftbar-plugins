@@ -1,8 +1,11 @@
 # SwiftBar plugins
 
-[![checks](https://github.com/tmzane/swiftbar-plugins/actions/workflows/checks.yml/badge.svg)](https://github.com/tmzane/swiftbar-plugins/actions/workflows/checks.yml)
+[![checks](https://github.com/amcintosh/swiftbar-plugins/actions/workflows/run-tests.yml/badge.svg)](https://github.com/amcintosh/swiftbar-plugins/actions/workflows/run-tests.yml)
 
-A collection of my plugins for [SwiftBar][1] (also compatible with [xbar][2]).
+A collection of plugins for [SwiftBar][1] (also compatible with [xbar][2]).
+
+Docker container, Homebrew, Pomodoro, and plugin Python library originally
+from [https://github.com/tmzane/swiftbar-plugins](https://github.com/tmzane/swiftbar-plugins) (dead).
 
 ## 📦 Install
 
@@ -12,15 +15,15 @@ Python 3.11+
 
 2. Clone this repository
 
-```shell
-git clone https://github.com/tmzane/swiftbar-plugins
-```
+   ```shell
+   git clone https://github.com/amcintosh/swiftbar-plugins
+   ```
 
 3. Create a symlink to the selected plugin in your [plugin folder][4]
 
-```shell
-ln -s /path/to/repo/plugin_name.py $SWIFTBAR_PLUGINS_PATH/plugin_name.py
-```
+   ```shell
+   ln -s /path/to/repo/plugin_name.py $SWIFTBAR_PLUGINS_PATH/plugin_name.py
+   ```
 
 ## 🔌 Plugins
 

@@ -16,7 +16,7 @@ check-style:
 	poetry run flake8 plugins --count --show-source --statistics
 	poetry run flake8 tests --count --show-source --statistics
 
-mypy:
+check-types:
 	poetry run mypy .
 
 test-all: test check-style
